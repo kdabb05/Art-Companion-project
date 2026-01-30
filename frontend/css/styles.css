@@ -1,0 +1,1631 @@
+/* Art Studio Companion - Styles */
+
+:root {
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #475569;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+/* App Container */
+.app-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 50;
+}
+
+/* Header */
+.app-header {
+    background: var(--bg-secondary);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.tagline {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Main Layout */
+.main-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebars */
+.sidebar {
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.right-sidebar {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.panel {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.panel-header h2 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.btn-view-all {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.btn-view-all:hover {
+    background: var(--bg-secondary);
+    text-decoration: underline;
+}
+
+.projects-panel {
+    flex: 1;
+    min-height: 200px;
+}
+
+.portfolio-panel {
+    flex: 1;
+    min-height: 200px;
+}
+
+/* List Containers */
+.list-container {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.list-container.scrollable {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.gallery-container.scrollable {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Supply Item */
+.supply-item {
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.supply-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.supply-status.plenty { background: var(--success-color); }
+.supply-status.low { background: var(--warning-color); }
+.supply-status.empty { background: var(--danger-color); }
+
+.supply-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.supply-name {
+    font-weight: 500;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.supply-brand {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.supply-color-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+}
+
+/* Project Item */
+.project-item {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.project-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.project-item .item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.project-title {
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.project-status {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: capitalize;
+}
+
+/* Idea Item */
+.idea-item {
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.idea-item:hover {
+    background: var(--bg-tertiary);
+}
+
+.idea-item .item-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.idea-item .item-title {
+    font-size: 0.875rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.idea-item .favorite-star {
+    font-size: 0.75rem;
+}
+
+/* Inline Delete Button for list items */
+.item-delete-btn {
+    background: transparent;
+    border: none;
+    font-size: 0.875rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.project-item:hover .item-delete-btn,
+.idea-item:hover .item-delete-btn {
+    opacity: 0.6;
+}
+
+.item-delete-btn:hover {
+    opacity: 1 !important;
+    transform: scale(1.1);
+    background: var(--danger-color);
+}
+
+/* Gallery */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.gallery-item {
+    aspect-ratio: 1;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 2rem;
+}
+
+/* Chat Container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    min-height: 0; /* Critical for flexbox scrolling */
+    overflow: hidden;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 0; /* Critical for flexbox scrolling */
+    scroll-behavior: smooth;
+}
+
+.message {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 85%;
+}
+
+.message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message.assistant {
+    align-self: flex-start;
+}
+
+.message-content {
+    background: var(--bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+}
+
+.message.user .message-content {
+    background: var(--primary-color);
+}
+
+.message-content p {
+    margin-bottom: 0.5rem;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.message-content a {
+    color: #60a5fa;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.message-content a:hover {
+    color: #93c5fd;
+}
+
+.message.user .message-content a {
+    color: #bfdbfe;
+}
+
+/* Chat Input */
+.chat-input-form {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-input-form input {
+    flex: 1;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.chat-input-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.chat-input-form input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+}
+
+.btn-warning {
+    background: var(--warning-color);
+    color: var(--bg-primary);
+}
+
+.btn-warning:hover {
+    background: #d97706;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.quick-actions .btn {
+    flex: 1;
+    font-size: 0.75rem;
+    padding: 0.5rem;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    padding-bottom: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Checkbox grid for modal preferences */
+.modal-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.modal-checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s;
+}
+
+.modal-checkbox-grid label:hover {
+    background: var(--bg-primary);
+}
+
+.modal-checkbox-grid input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* View All Modal Lists */
+.view-all-list {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.view-all-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    gap: 0.5rem;
+}
+
+.view-all-item:hover {
+    background: var(--bg-primary);
+}
+
+.view-all-item .item-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    min-width: 0;
+}
+
+.view-all-item .item-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.view-all-item .item-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.view-all-item .item-status {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    text-transform: capitalize;
+}
+
+.view-all-item .item-category {
+    font-size: 0.7rem;
+    color: var(--primary-color);
+    text-transform: capitalize;
+}
+
+.view-all-item .supply-status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.view-all-item .supply-status-dot.plenty { background: var(--success-color); }
+.view-all-item .supply-status-dot.low { background: var(--warning-color); }
+.view-all-item .supply-status-dot.empty { background: var(--danger-color); }
+
+/* View All Gallery for Portfolio */
+.view-all-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.view-all-artwork {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.view-all-artwork:hover {
+    transform: scale(1.02);
+}
+
+.view-all-artwork img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.view-all-artwork .artwork-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: var(--bg-secondary);
+}
+
+.view-all-artwork .artwork-info {
+    padding: 0.5rem;
+}
+
+.view-all-artwork .item-title {
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.view-all-artwork .item-meta {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-header h3 {
+    font-size: 1.125rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Copyright Section in Modal */
+.copyright-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--warning-color);
+}
+
+.copyright-section h4 {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Checkbox Label - used in copyright section and elsewhere */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin: 0;
+}
+
+.checkbox-label:hover {
+    color: var(--text-primary);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.checkbox-label span {
+    line-height: 1.3;
+}
+
+.copyright-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.copyright-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.copyright-options input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+}
+
+.copyright-note {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Copyright Display in Artwork View */
+.copyright-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    font-size: 0.875rem;
+}
+
+.copyright-icon {
+    font-size: 1.25rem;
+    color: var(--warning-color);
+}
+
+.copyright-permissions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.copyright-permissions .allowed {
+    color: var(--success-color);
+}
+
+.copyright-permissions .restricted {
+    color: var(--danger-color);
+}
+
+/* Supply Checkbox Grid Styles */
+.supply-categories-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: var(--bg-tertiary);
+}
+
+.supply-category {
+    margin-bottom: 1rem;
+}
+
+.supply-category:last-child {
+    margin-bottom: 0;
+}
+
+.supply-category h4 {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.supply-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.25rem;
+}
+
+.supply-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.2s;
+}
+
+.supply-checkbox-item:hover {
+    background: var(--bg-secondary);
+}
+
+.supply-checkbox-item input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--primary-color);
+}
+
+/* Selected Supplies Details */
+.selected-supplies-details {
+    margin-top: 1rem;
+}
+
+.supply-detail-item {
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.supply-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.supply-detail-header strong {
+    font-size: 0.9rem;
+}
+
+.btn-small {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-small:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.supply-detail-fields {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.supply-detail-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.form-group.compact {
+    margin-bottom: 0;
+}
+
+.form-group.compact label {
+    font-size: 0.7rem;
+    margin-bottom: 0.15rem;
+}
+
+.small-input {
+    width: 100%;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+/* Custom Supply Section */
+.custom-supply-section {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+}
+
+.custom-supply-section.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.form-group label .optional {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    font-weight: normal;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Loading State */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-secondary);
+}
+
+.empty-state-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   Authentication Screens
+   ======================================== */
+
+.auth-screen,
+.onboarding-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.auth-container {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    width: 100%;
+    margin: 1rem;
+    text-align: center;
+}
+
+.auth-container h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-container .tagline {
+    margin-bottom: 2rem;
+}
+
+.auth-form h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.auth-form .form-group {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.auth-switch {
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.auth-switch a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+.welcome-text {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.auth-divider span {
+    padding: 0 1rem;
+    font-size: 0.875rem;
+}
+
+.form-hint {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.custom-medium-input {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+}
+
+.custom-medium-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.custom-medium-input input {
+    width: 100%;
+    padding: 0.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+.custom-medium-input small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+}
+
+.error-message {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+/* Onboarding Styles */
+.onboarding-container {
+    background: var(--bg-secondary);
+    padding: 2rem 3rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    width: 100%;
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.onboarding-container h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.onboarding-container .tagline {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.onboarding-section {
+    margin-bottom: 1.5rem;
+}
+
+.onboarding-section h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.5rem;
+}
+
+.checkbox-grid label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background 0.2s;
+}
+
+.checkbox-grid label:hover {
+    background: var(--border-color);
+}
+
+.checkbox-grid input[type="checkbox"] {
+    width: auto;
+}
+
+.onboarding-section select,
+.onboarding-section textarea,
+.onboarding-section input[type="text"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.onboarding-section small {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* User Menu in Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-menu span {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.btn-small {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+}
+
+/* Left Sidebar Adjustments */
+.left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.conversations-panel,
+.supplies-panel {
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.conversations-panel {
+    flex: 1;
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.supplies-panel {
+    flex: 1;
+}
+
+/* Conversation List Items */
+.conversation-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    gap: 0.5rem;
+}
+
+.conversation-item:hover {
+    background: var(--bg-secondary);
+}
+
+.conversation-item.active {
+    background: var(--primary-color);
+}
+
+.conversation-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-conversation-btn {
+    opacity: 0;
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    transition: opacity 0.2s, background 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.conversation-item:hover .delete-conversation-btn {
+    opacity: 1;
+}
+
+.delete-conversation-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.item-title {
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.conversation-item.active .item-meta {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Ideas Panel */
+.ideas-panel {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.idea-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-star {
+    font-size: 0.75rem;
+}
+
+.idea-details {
+    margin: 1rem 0;
+}
+
+.idea-category {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.idea-content {
+    background: var(--bg-tertiary);
+    padding: 1rem;
+    border-radius: 8px;
+    white-space: pre-wrap;
+}
+
+.idea-tags {
+    margin-top: 0.75rem;
+}
+
+.tag {
+    display: inline-block;
+    background: var(--primary-color);
+    padding: 0.125rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 0.25rem;
+}
+
+/* Empty Message */
+.empty-message {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Modal Actions */
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #16a34a;
+}
+
+/* Quantity Control */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-control input {
+    width: 80px;
+    text-align: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.quantity-control .btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+/* Stock Status Quick Buttons */
+.stock-status-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.stock-status-buttons label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.stock-status-buttons .btn-small {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.5rem;
+}
+
+/* Color Section for Supplies */
+.color-section {
+    padding: 1rem;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.color-section.hidden {
+    display: none;
+}
+
+/* Selected colors container */
+.selected-colors-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    min-height: 2rem;
+}
+
+.selected-colors-container .empty-colors {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.selected-color-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.85rem;
+}
+
+.selected-color-tag .color-swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.selected-color-tag .color-name {
+    color: var(--text-primary);
+}
+
+.selected-color-tag .remove-color {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0 0.2rem;
+    line-height: 1;
+}
+
+.selected-color-tag .remove-color:hover {
+    color: var(--error-color);
+}
+
+/* Add color row */
+.add-color-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.add-color-row input[type="color"] {
+    width: 44px;
+    height: 36px;
+    padding: 0;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.add-color-row input[type="text"] {
+    flex: 1;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-primary);
+}
+
+.color-presets {
+    margin-top: 0.5rem;
+}
+
+.color-preset-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.color-preset-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.color-preset {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid var(--bg-secondary);
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.color-preset:hover {
+    transform: scale(1.15);
+    border-color: var(--text-primary);
+}
+
+/* Multiple color dots in supply list */
+.supply-color-dots {
+    display: flex;
+    gap: 2px;
+    margin-right: 0.5rem;
+}
+
+.supply-color-more {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-left: 2px;
+}

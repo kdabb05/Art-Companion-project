@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Studio Companion</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Welcome Screen (shown when not logged in) -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-container">
+            <h1>🎨 Art Studio Companion</h1>
+            <p class="tagline">Your personal studio manager</p>
+            
+            <!-- Welcome/Guest View (default for new users) -->
+            <div id="welcome-form" class="auth-form">
+                <h2>Welcome, Artist!</h2>
+                <p class="welcome-text">I'm your personal art studio companion. I can help you plan projects, manage supplies, and track your creative journey.</p>
+                
+                <button onclick="continueAsGuest()" class="btn btn-primary btn-full">Get Started 🎨</button>
+                
+                <div class="auth-divider">
+                    <span>or</span>
+                </div>
+                
+                <button onclick="showRegisterForm()" class="btn btn-secondary btn-full">Create Account</button>
+                <p class="auth-switch">Already have an account? <a href="#" onclick="showLoginForm()">Sign in</a></p>
+            </div>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form hidden">
+                <h2>Welcome Back</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" required placeholder="YourUsername">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+                </form>
+                <p class="auth-switch"><a href="#" onclick="showWelcomeForm()">← Back</a></p>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="register-form" class="auth-form hidden">
+                <h2>Create Account</h2>
+                <p class="form-hint">Create an account to save your data across sessions</p>
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label for="register-username">Username</label>
+                        <input type="text" id="register-username" required placeholder="ArtistName">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email (optional)</label>
+                        <input type="email" id="register-email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" required minlength="6" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                <p class="auth-switch"><a href="#" onclick="showWelcomeForm()">← Back</a></p>
+            </div>
+            
+            <div id="auth-error" class="error-message hidden"></div>
+        </div>
+    </div>
+    
+    <!-- Onboarding Screen (shown after first registration) -->
+    <div id="onboarding-screen" class="onboarding-screen hidden">
+        <div class="onboarding-container">
+            <h1>🎨 Let's Get to Know You</h1>
+            <p class="tagline">Tell me about your art practice so I can help you better</p>
+            
+            <form id="onboarding-form" onsubmit="handleOnboarding(event)">
+                <div class="onboarding-section">
+                    <h3>What mediums/crafts do you work with?</h3>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="mediums" value="watercolor"> Watercolor</label>
+                        <label><input type="checkbox" name="mediums" value="acrylic"> Acrylic</label>
+                        <label><input type="checkbox" name="mediums" value="oil"> Oil Paint</label>
+                        <label><input type="checkbox" name="mediums" value="gouache"> Gouache</label>
+                        <label><input type="checkbox" name="mediums" value="colored_pencil"> Colored Pencil</label>
+                        <label><input type="checkbox" name="mediums" value="graphite"> Graphite</label>
+                        <label><input type="checkbox" name="mediums" value="charcoal"> Charcoal</label>
+                        <label><input type="checkbox" name="mediums" value="ink"> Ink</label>
+                        <label><input type="checkbox" name="mediums" value="pastel"> Pastel</label>
+                        <label><input type="checkbox" name="mediums" value="digital"> Digital</label>
+                        <label><input type="checkbox" name="mediums" value="mixed_media"> Mixed Media</label>
+                        <label><input type="checkbox" name="mediums" value="crochet"> Crochet</label>
+                        <label><input type="checkbox" name="mediums" value="knitting"> Knitting</label>
+                        <label><input type="checkbox" name="mediums" value="embroidery"> Embroidery</label>
+                        <label><input type="checkbox" name="mediums" value="sculpting"> Sculpting</label>
+                        <label><input type="checkbox" name="mediums" value="ceramics"> Ceramics</label>
+                    </div>
+                    <div class="custom-medium-input">
+                        <label>Other (add your own):</label>
+                        <input type="text" id="custom-mediums" placeholder="e.g., resin art, quilting, macrame...">
+                        <small>Comma-separated list</small>
+                    </div>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>What styles interest you?</h3>
+                    <div class="checkbox-grid">
+                        <label><input type="checkbox" name="styles" value="realistic"> Realistic</label>
+                        <label><input type="checkbox" name="styles" value="impressionist"> Impressionist</label>
+                        <label><input type="checkbox" name="styles" value="abstract"> Abstract</label>
+                        <label><input type="checkbox" name="styles" value="botanical"> Botanical</label>
+                        <label><input type="checkbox" name="styles" value="portrait"> Portrait</label>
+                        <label><input type="checkbox" name="styles" value="landscape"> Landscape</label>
+                        <label><input type="checkbox" name="styles" value="minimalist"> Minimalist</label>
+                        <label><input type="checkbox" name="styles" value="expressive"> Expressive</label>
+                    </div>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>What's your experience level?</h3>
+                    <select name="skill_level" id="onboard-skill">
+                        <option value="">Select one...</option>
+                        <option value="beginner">Beginner - Just starting out</option>
+                        <option value="intermediate">Intermediate - Some experience</option>
+                        <option value="advanced">Advanced - Experienced artist</option>
+                        <option value="professional">Professional - Make art for a living</option>
+                    </select>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>How long are your typical art sessions?</h3>
+                    <select name="session_length" id="onboard-session">
+                        <option value="">Select one...</option>
+                        <option value="15-30min">Quick sketch (15-30 minutes)</option>
+                        <option value="1-2hr">Short session (1-2 hours)</option>
+                        <option value="3-4hr">Long session (3-4 hours)</option>
+                        <option value="full_day">Full day immersion</option>
+                    </select>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>Monthly supplies budget?</h3>
+                    <select name="budget_range" id="onboard-budget">
+                        <option value="">Select one...</option>
+                        <option value="minimal">Minimal ($0-25)</option>
+                        <option value="modest">Modest ($25-75)</option>
+                        <option value="comfortable">Comfortable ($75-200)</option>
+                        <option value="generous">Generous ($200+)</option>
+                    </select>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>What are your artistic goals?</h3>
+                    <textarea name="goals" id="onboard-goals" rows="3" placeholder="E.g., improve my watercolor technique, build a portfolio, relax and have fun..."></textarea>
+                </div>
+                
+                <div class="onboarding-section">
+                    <h3>Pinterest Board Link (optional)</h3>
+                    <input type="text" name="pinterest_username" id="onboard-pinterest" placeholder="@yourusername">
+                    <small>I can use this for inspiration!</small>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">Start Creating! 🎨</button>
+                <button type="button" class="btn btn-secondary btn-full" onclick="skipOnboarding()">Skip for now</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App (shown when logged in or guest) -->
+    <div id="app-container" class="app-container hidden">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>🎨 Art Studio Companion</h1>
+            <div class="user-menu">
+                <span id="user-display"></span>
+                <button onclick="showPreferences()" class="btn btn-secondary btn-small">⚙️ Preferences</button>
+                <button id="auth-btn" onclick="handleLogout()" class="btn btn-secondary btn-small">Sign Out</button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="main-layout">
+            <!-- Left Sidebar: Conversations & Supplies -->
+            <aside class="sidebar left-sidebar">
+                <!-- Conversation History -->
+                <section class="panel conversations-panel">
+                    <div class="panel-header">
+                        <h2>💬 Conversations</h2>
+                        <button onclick="viewAllConversations()" class="btn-view-all" title="View all">View All</button>
+                    </div>
+                    <button onclick="startNewConversation()" class="btn btn-primary btn-full">+ New Chat</button>
+                    <div id="conversations-list" class="list-container scrollable">
+                        <!-- Conversations will be loaded here -->
+                    </div>
+                </section>
+                
+                <!-- Supplies -->
+                <section class="panel supplies-panel">
+                    <div class="panel-header">
+                        <h2>📦 Supplies</h2>
+                        <button onclick="viewAllSupplies()" class="btn-view-all" title="View all">View All</button>
+                    </div>
+                    <div class="quick-actions">
+                        <button onclick="showLowStock()" class="btn btn-warning btn-small">Low Stock</button>
+                        <button onclick="openAddSupplyModal()" class="btn btn-primary btn-small">+ Add</button>
+                    </div>
+                    <div id="supplies-list" class="list-container scrollable">
+                        <!-- Supplies will be loaded here -->
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Center: Chat -->
+            <main class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message assistant">
+                        <div class="message-content">
+                            <p>Hello! I'm your Art Studio Companion. I can help you plan art projects, manage your supplies, and keep track of your portfolio.</p>
+                            <p>What would you like to work on today?</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="chat-form" class="chat-input-form">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        placeholder="Ask about projects, supplies, or get inspiration..." 
+                        autocomplete="off"
+                    >
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </main>
+
+            <!-- Right Sidebar: Projects, Ideas & Portfolio -->
+            <aside class="sidebar right-sidebar">
+                <!-- Ideas Panel -->
+                <section class="panel ideas-panel">
+                    <div class="panel-header">
+                        <h2>💡 Ideas</h2>
+                        <button onclick="viewAllIdeas()" class="btn-view-all" title="View all">View All</button>
+                    </div>
+                    <button onclick="openAddIdeaModal()" class="btn btn-primary btn-full">+ Save Idea</button>
+                    <div id="ideas-list" class="list-container scrollable">
+                        <!-- Ideas will be loaded here -->
+                    </div>
+                </section>
+                
+                <!-- Projects Panel -->
+                <section class="panel projects-panel">
+                    <div class="panel-header">
+                        <h2>📋 Projects</h2>
+                        <button onclick="viewAllProjects()" class="btn-view-all" title="View all">View All</button>
+                    </div>
+                    <button onclick="openNewProjectModal()" class="btn btn-primary btn-full">+ New Project</button>
+                    <div id="projects-list" class="list-container scrollable">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Portfolio Gallery -->
+                <section class="panel portfolio-panel">
+                    <div class="panel-header">
+                        <h2>🖼️ Portfolio</h2>
+                        <button onclick="viewAllPortfolio()" class="btn-view-all" title="View all">View All</button>
+                    </div>
+                    <button onclick="openAddArtworkModal()" class="btn btn-primary btn-full">+ Add Artwork</button>
+                    <div id="portfolio-gallery" class="gallery-container scrollable">
+                        <!-- Artworks will be loaded here -->
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div id="modal-content" class="modal-content">
+            <!-- Modal content will be inserted here -->
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/components.js"></script>
+</body>
+</html>

@@ -1,251 +1,213 @@
-# Art-Companion-project
+# Art Studio Companion 🎨
+
+A web-based, agentic application designed to act as a personal studio manager for hobby and student artists.
+
+## Quick Start
+
+### Prerequisites
+- Python 3.11 or higher
+- [uv](https://docs.astral.sh/uv/) package manager (recommended)
+- An OpenRouter API key ([get one here](https://openrouter.ai/))
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/kdabb05/Art-Companion-project.git
+   cd Art-Companion-project
+   ```
+
+2. **Install dependencies**
+   ```bash
+   uv sync
+   ```
+
+3. **Configure environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env` and add your OpenRouter API key:
+   ```
+   OPENROUTER_API_KEY=your_api_key_here
+   LETTA_MODEL=anthropic/claude-3.5-sonnet
+   SECRET_KEY=your_secret_key_here
+   ```
+
+4. **Run the application**
+   ```bash
+   uv run python backend/app.py
+   ```
+
+5. **Open in browser**
+   
+   Navigate to [http://localhost:5000](http://localhost:5000)
+
+### Using the App
+
+1. **Get Started** - Click "Get Started" to use as a guest, or create an account to save your data
+2. **Set Preferences** - Tell the AI about your art mediums (watercolor, crochet, knitting, etc.), styles, and goals
+3. **Chat with the AI** - Ask for project ideas, manage your supplies, get inspiration
+4. **Track Everything** - Manage supplies, projects, portfolio, and save ideas
+
+---
 
 ## Overview
 
-Art Studio Companion is a web-based, agentic application designed to act as a personal studio manager for hobby and student artists. The goal of the project is to go beyond a simple “chat with an LLM” and instead build a stateful AI agent that can remember a user’s materials, preferences, and project history over time, and use that information to plan realistic, budget-aware art projects.
+Art Studio Companion goes beyond a simple "chat with an LLM" to build a stateful AI agent that can remember your materials, preferences, and project history over time, and use that information to plan realistic, budget-aware art projects.
 
-At its core, the application will feature an LLM-based agent that can:
+The AI agent can:
 
-* Hold multi-step, natural conversations about creative ideas and constraints.
-* Call multiple MCP tools to fetch inspiration, manage supplies, and save project data.
-* Maintain long-term memory about the user’s supplies, preferences, and past projects.
-
-The application is intended to feel like a long-term studio companion rather than a one-off chat session.
+* Hold multi-step, natural conversations about creative ideas and constraints
+* Call multiple tools to fetch inspiration, manage supplies, and save project data
+* Maintain long-term memory about your supplies, preferences, and past projects
 
 ---
 
-## Target Users
+## Features
 
-The primary users are:
+### Multi-User Support
+- **Guest Mode**: Try the app without creating an account
+- **User Accounts**: Create an account with username/password to persist your data
+- **Conversation History**: All chats are saved and can be resumed later
+- **Ideas Section**: Save and organize creative ideas from conversations
 
-* Hobby artists who want help organizing their materials and planning manageable projects.
-* Student artists who want structured project guidance and a lightweight portfolio tracker.
-* Myself, as a test user, for iterating on agent behavior and long-term personalization.
+### Supported Art Forms
+- Traditional painting (watercolor, acrylic, oil, gouache)
+- Drawing (graphite, charcoal, colored pencil, ink, pastel)
+- Digital art
+- Fiber arts (crochet, knitting, embroidery)
+- 3D arts (sculpting, ceramics)
+- **Custom mediums** - add your own!
 
-The system is not required to be commercially practical; its primary purpose is to demonstrate an ambitious, agentic architecture with memory, tools, and a real UI.
-
----
-
-## Core Agent Capabilities
-
-The LLM-based agent will be designed to:
-
-* Maintain conversational context across multiple turns.
-
-* Remember long-term information such as:
-
-  * Supply inventory
-  * Favorite mediums and styles
-  * Budget constraints
-  * Project history
-  * Portfolio metadata
-
-* Perform tool-driven reasoning, for example:
-
-  * Inspecting inventory before proposing a project
-  * Fetching visual inspiration before suggesting compositions
-  * Saving project plans and session notes for later resumption
-
-The agent will adapt over time to the user’s evolving preferences (e.g., “bold color,” “loose brushwork,” “1-hour weeknight sessions”).
+### AI Agent Capabilities
+- Remembers your supplies, preferences, and project history
+- Suggests projects based on what you have on hand
+- Tracks supply levels and alerts when running low
+- Provides themed inspiration and color palettes
+- Saves step-by-step project plans
 
 ---
 
-## MCP Tools (4 Planned)
+## Tech Stack
 
-The agent will be extended using multiple MCP tools. At least three are required for the course; this project proposes four.
-
-### 1. Pinterest Inspiration Tool
-
-Given a theme (e.g., “botanical watercolor,” “moody cityscape”), this tool will fetch curated images and metadata from Pinterest or a mock API.
-
-The agent will use this tool to:
-
-* Suggest compositions
-* Extract color palettes
-* Propose visual references
+- **Backend**: Flask (Python 3.11+)
+- **Database**: SQLite with SQLAlchemy ORM
+- **AI**: OpenRouter API (Claude 3.5 Sonnet)
+- **Frontend**: Vanilla HTML/CSS/JavaScript
+- **Auth**: Flask-Login with session-based authentication
+- **Package Manager**: uv
 
 ---
 
-### 2. Supply Inventory Manager
+## Project Structure
 
-This tool will:
-
-* Track supplies with brand, type, and quantity
-
-  * Example: “Winsor & Newton Cadmium Yellow, half tube remaining”
-* Support adding, updating, and listing supplies
-* Provide a “low stock” query
-
-This enables supply-aware project planning and budget-conscious suggestions.
-
----
-
-### 3. Portfolio Storehouse
-
-This tool will:
-
-* Store uploaded images of finished or in-progress artwork
-* Attach metadata such as:
-
-  * Medium
-  * Date
-  * Difficulty
-  * Notes
-
-The agent will use portfolio history to learn the user’s evolving style and preferences.
-
----
-
-### 4. Project Filesaver
-
-This tool will:
-
-* Save detailed project plans
-* Store step-by-step instructions
-* Track supply lists and session notes
-
-It will allow the user to pause a project and later ask the agent to resume from where they left off.
-
----
-
-## Web Interface
-
-The application will provide a simple browser-based GUI with the following components:
-
-### Chat Window
-
-* Central conversation area where the user describes ideas and constraints.
-* The agent responds with:
-
-  * Project plans
-  * Inspiration
-  * Inventory-aware suggestions
+```
+Art-Companion-project/
+├── backend/
+│   ├── app.py              # Flask application entry point
+│   ├── config.py           # Configuration (loads from .env)
+│   ├── models/             # SQLAlchemy models
+│   │   ├── user.py         # User accounts and preferences
+│   │   ├── supply.py       # Supply inventory
+│   │   ├── project.py      # Project/session model
+│   │   ├── portfolio.py    # Artwork metadata
+│   │   ├── conversation.py # Chat history
+│   │   └── idea.py         # Saved ideas
+│   ├── tools/              # AI tool implementations
+│   │   ├── inspiration.py  # Inspiration and color palettes
+│   │   ├── inventory.py    # Supply inventory manager
+│   │   ├── portfolio.py    # Portfolio storehouse
+│   │   └── project.py      # Project filesaver
+│   ├── routes/             # API route blueprints
+│   │   ├── __init__.py     # Auth routes
+│   │   ├── conversations.py
+│   │   └── ideas.py
+│   └── agent/              # AI agent configuration
+│       └── studio_agent.py # OpenRouter integration
+├── frontend/
+│   ├── index.html          # Single-page app
+│   ├── css/styles.css
+│   └── js/
+│       ├── auth.js         # Authentication handling
+│       ├── app.js          # Main application logic
+│       ├── chat.js         # Chat functionality
+│       └── components.js   # UI components
+├── data/
+│   └── studio.db           # SQLite database (gitignored)
+├── .env.example            # Template for environment variables
+├── pyproject.toml          # Python dependencies
+└── README.md
+```
 
 ---
 
-### Supply Status Sidebar
+## API Endpoints
 
-A color-coded inventory view:
+### Authentication
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/api/auth/register` | Create new account |
+| POST | `/api/auth/login` | Sign in with username |
+| POST | `/api/auth/logout` | Sign out |
+| GET | `/api/auth/me` | Get current user |
+| POST | `/api/auth/onboarding` | Save preferences |
 
-* Green: plenty
-* Yellow: running low
-* Red: empty
-
-This gives quick visibility into available materials.
-
----
-
-### Projects Panel
-
-* List of saved projects with titles and status (e.g., “in progress,” “completed”).
-* Clicking a project will load its notes and allow the agent to continue planning or execution.
-
----
-
-### Portfolio Gallery
-
-* Thumbnail grid of uploaded artwork
-* Basic metadata display
-* Used to review progress and evolving style
+### Core Features
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/api/chat` | Send message to AI agent |
+| GET/POST | `/api/supplies` | List/add supplies |
+| GET/POST | `/api/projects` | List/create projects |
+| GET/POST | `/api/portfolio` | List/add artworks |
+| GET/POST | `/api/conversations` | List/create conversations |
+| GET/POST | `/api/ideas` | List/save ideas |
 
 ---
 
-### Quick Actions
+## Example Conversations
 
-* Scan Supplies: upload a photo of supplies and infer inventory items (initially basic).
-* New Project: start a new AI-assisted project planning flow.
-* Show Low Stock: quickly view items that need restocking.
-* Get Inspiration: trigger an inspiration-finding flow.
+**Managing Supplies:**
+> "Add 3 skeins of Bernat Blanket yarn in Vintage White to my inventory"
 
----
+**Planning Projects:**
+> "I want to crochet a blanket for my living room. What do I need?"
 
-## Long-Term Memory
+**Getting Inspiration:**
+> "Show me inspiration for a watercolor botanical painting"
 
-The agent will use a combination of:
-
-* Letta’s built-in memory
-* SQLite-based persistent storage
-
-Long-term memory will store:
-
-* Supply inventory
-* Style and medium preferences
-* Budget constraints
-* Project history
-* Portfolio metadata
-
-This memory will be reloaded across sessions so the agent can behave consistently over time.
+**Tracking Progress:**
+> "What supplies am I running low on?"
 
 ---
 
-## Architecture (Planned)
+## Development
 
-**Backend:** Flask (Python)
+### Running in Development Mode
+```bash
+uv run python backend/app.py
+```
+The server runs with auto-reload enabled at `http://localhost:5000`.
 
-**Agent Framework:** Letta (LLM agent with tool calling and memory)
+### Running Tests
+```bash
+uv run pytest
+```
 
-**Database:** SQLite (via SQLAlchemy)
-
-**Frontend:** HTML + CSS + JavaScript (single-page style UI)
-
-The agent will run as a service that receives user messages, performs reasoning, invokes tools as needed, and returns structured responses to the frontend.
-
----
-
-## Testing & Evaluation Plan
-
-To verify the application behaves as intended:
-
-### Scenario Tests
-
-* New user with empty memory:
-
-  * Ask for a project and confirm the agent either recommends starter supplies or asks clarifying questions.
-
-* Returning user with inventory and portfolio data:
-
-  * Ask for a project under a budget and confirm the agent respects known supplies and price constraints.
+### Resetting the Database
+```bash
+rm data/studio.db
+uv run python backend/app.py  # Creates fresh database
+```
 
 ---
 
-### Tool Invocation Tests
+## License
 
-* Confirm that planning a project triggers:
-
-  * Inspiration tool
-  * Inventory tool
-  * Project saving tool
-
-* Confirm “Show low stock” only queries inventory and renders the correct status.
+This project is for educational purposes.
 
 ---
 
-### Persistence Checks
+## Acknowledgments
 
-* Add supplies, projects, and portfolio pieces.
-* Restart the app.
-* Confirm that all data is still present and used by the agent.
-
----
-
-## Roadmap / Stretch Features
-
-* “Inspiration Network” of art friends or mentors with distinct style profiles.
-* More robust image-to-inventory recognition for scanned supply photos.
-* Deeper portfolio analytics (e.g., tracking most-used mediums, colors, or themes).
-* Optional deployment to a serverless platform (e.g., modal.com) for easier sharing.
-
----
-
-## Why This Project Is Ambitious
-
-This project combines:
-
-* A stateful LLM-based agent
-* Multiple MCP tools
-* Long-term memory
-* A real GUI
-* Persistent storage
-* Multi-step, tool-driven reasoning
-
-The goal is not to produce a minimal demo, but to build a genuinely agentic application that evolves with its user over time. It is significantly more complex than a simple “chat with an LLM” interface and is designed to stretch both technical and conceptual boundaries for the course project.
+Built as a demonstration of agentic AI architecture with memory, tools, and a real UI.
